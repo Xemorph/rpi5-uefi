@@ -13,4 +13,3 @@
 [submodule "edk2-platforms"]
 	path = edk2-platforms
 	url = https://github.com/Xemorph/edk2-platforms
-	branch = rpi5-dev
