@@ -5,6 +5,7 @@ on:
       - '**.md'
     branches:
       - master
+      - devel
   pull_request:
     paths-ignore:
       - '**.md'
@@ -15,7 +16,7 @@ on:
 
 env:
   RPI_FIRMWARE_URL: https://github.com/raspberrypi/firmware/
-  DTB_VERSION: 1e403e23baab5673f0494a200f57cd01287d5b1a
+  DTB_VERSION: bc7f439c234e19371115e07b57c366df59cc1bc7 # Commit Hash
 
 jobs:
   build:
