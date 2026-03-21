@@ -62,23 +62,23 @@ if [ ${MACHINE_TYPE} != 'aarch64' ]; then
 fi
 
 #
-# Build TF-A
+# [LEGACY] Build TF-A
 #
-pushd arm-trusted-firmware || exit
-
-make \
-    PLAT=rpi${MODEL} \
-    PRELOADED_BL33_BASE=0x20000 \
-    RPI3_PRELOADED_DTB_BASE=0x3E0000 \
-    SUPPORT_VFP=1 \
-    SMC_PCI_SUPPORT=1 \
-    ENABLE_FEAT_VHE=1 \
-    DEBUG=${DEBUG} \
-    all \
-    ${TFA_FLAGS} \
-    || exit
-
-popd || exit
+#pushd arm-trusted-firmware || exit
+#
+#make \
+#    PLAT=rpi${MODEL} \
+#    PRELOADED_BL33_BASE=0x20000 \
+#    RPI3_PRELOADED_DTB_BASE=0x3E0000 \
+#    SUPPORT_VFP=1 \
+#    SMC_PCI_SUPPORT=1 \
+#    ENABLE_FEAT_VHE=1 \
+#    DEBUG=${DEBUG} \
+#    all \
+#    ${TFA_FLAGS} \
+#    || exit
+#
+#popd || exit
 
 #
 # Build EDK2 final image
@@ -91,7 +91,10 @@ else
     RELEASE_TYPE="RELEASE"
 fi
 
-ATF_BUILD_DIR="${PWD}/arm-trusted-firmware/build/rpi${MODEL}/${RELEASE_TYPE,,}"
+# 
+# [LEGACY]
+#
+#ATF_BUILD_DIR="${PWD}/arm-trusted-firmware/build/rpi${MODEL}/${RELEASE_TYPE,,}"
 
 export GCC_AARCH64_PREFIX="${CROSS_COMPILE}"
 export WORKSPACE=${PWD}
@@ -106,7 +109,6 @@ build \
     -t GCC \
     -b ${RELEASE_TYPE} \
     -p edk2-platforms/Platform/RaspberryPi/RPi${MODEL}/RPi${MODEL}.dsc \
-    -D TFA_BUILD_ARTIFACTS=${ATF_BUILD_DIR} \
     --pcd gEfiMdeModulePkgTokenSpaceGuid.PcdFirmwareVersionString=L"${GIT_COMMIT}" \
     ${EDK2_FLAGS} \
     || exit
