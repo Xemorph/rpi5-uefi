@@ -5,3 +5,6 @@
 	path = edk2-non-osi
 	url = https://github.com/Xemorph/edk2-non-osi
 	branch = master
+[submodule "edk2"]
+	path = edk2
+	url = https://github.com/tianocore/edk2
